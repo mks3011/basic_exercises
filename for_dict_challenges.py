@@ -12,11 +12,20 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Петя'},
 ]
-# ???
+
+value_count = {}
+for name in students:
+    for value in name.values():
+        if value in value_count:
+            value_count[value] += 1
+        else:
+            value_count[value] = 1
+for key in value_count:
+    print(f'{key}: {value_count[key]}')
 
 
 # Задание 2
-# Дан список учеников, нужно вывести самое часто повторящееся имя
+# Дан список учеников, нужно вывести самое часто повторяющееся имя
 # Пример вывода:
 # Самое частое имя среди учеников: Маша
 students = [
@@ -26,8 +35,21 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Оля'},
 ]
-# ???
 
+name_count = {}
+most_common_name = None
+max_count = 0
+
+for student in students:
+    name = student['first_name']
+    if name in name_count:
+        name_count[name] += 1
+    else:
+        name_count[name] = 1
+    if name_count[name] > max_count:
+        max_count = name_count[name]
+        most_common_name = name
+print(most_common_name)
 
 # Задание 3
 # Есть список учеников в нескольких классах, нужно вывести самое частое имя в каждом классе.
@@ -76,7 +98,7 @@ is_male = {
 
 
 # Задание 5
-# По информации о учениках разных классов нужно найти класс, в котором больше всего девочек и больше всего мальчиков
+# По информации об учениках разных классов нужно найти класс, в котором больше всего девочек и больше всего мальчиков
 # Пример вывода:
 # Больше всего мальчиков в классе 3c
 # Больше всего девочек в классе 2a
