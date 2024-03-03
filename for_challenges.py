@@ -74,11 +74,11 @@ groups = [
     ['Оля', 'Петя', 'Гриша'],
     ['Вася', 'Маша', 'Саша', 'Женя'],
 ]
-
+# v1
 group_number = 0
 for group in groups:
     group_number += 1
     print(f'Группа {group_number}: {",".join(group)}')
-
+# v2
 for i, group in enumerate(groups, 1):
     print(f'Группа {i}: {" - ".join(group)}')
