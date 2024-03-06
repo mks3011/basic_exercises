@@ -15,7 +15,7 @@ print(len([letter for letter in word if letter.lower() in "аоуыэеёиюя"
 
 # Вывести количество слов в предложении
 sentence = 'Мы приехали в гости'
-print(sentence.count(" "))
+print(len(sentence.split()))
 
 
 # Вывести первую букву каждого слова на отдельной строке
