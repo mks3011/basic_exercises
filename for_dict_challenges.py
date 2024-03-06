@@ -14,15 +14,22 @@ students = [
 ]
 
 value_count = {}
-for name in students:
-    for value in name.values():
-        if value in value_count:
-            value_count[value] += 1
-        else:
-            value_count[value] = 1
+# for name in students:
+#     for value in name.values():
+#         if value in value_count:
+#             value_count[value] += 1
+#         else:
+#             value_count[value] = 1
+# for key in value_count:
+#     print(f'{key}: {value_count[key]}')
+
+for student in students:
+    if student['first_name'] in value_count:
+        value_count[student['first_name']] += 1
+    else:
+        value_count[student['first_name']] = 1
 for key in value_count:
     print(f'{key}: {value_count[key]}')
-
 
 # Задание 2
 # Дан список учеников, нужно вывести самое часто повторяющееся имя
@@ -37,7 +44,7 @@ students = [
 ]
 
 name_count = {}
-most_common_name = None
+most_used_name = None
 max_count = 0
 
 for student in students:
@@ -46,11 +53,11 @@ for student in students:
         name_count[name] += 1
     else:
         name_count[name] = 1
+for name in name_count:
     if name_count[name] > max_count:
         max_count = name_count[name]
-        most_common_name = name
-print(most_common_name)
-
+        most_used_name = name
+print(most_used_name)
 
 # Задание 3
 # Есть список учеников в нескольких классах, нужно вывести самое частое имя в каждом классе.
@@ -75,7 +82,6 @@ school_students = [
     ],
 ]
 
-
 for class_num, each_class in enumerate(school_students, 1):
     name_count = {}
     most_common_name = None
@@ -86,11 +92,11 @@ for class_num, each_class in enumerate(school_students, 1):
             name_count[name] += 1
         else:
             name_count[name] = 1
+    for name in name_count:
         if name_count[name] > max_count:
             max_count = name_count[name]
             most_common_name = name
     print(f'Самое частое имя в классе {class_num}: {most_common_name}')
-
 
 # Задание 4
 # Для каждого класса нужно вывести количество девочек и мальчиков в нём.
@@ -101,7 +107,7 @@ for class_num, each_class in enumerate(school_students, 1):
 school = [
     {'class': '2a', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
     {'class': '2б', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}]},
-    {'class': '2в', 'students': [{'first_name': 'Даша'}, {'first_name': 'Олег'}, {'first_name': 'Маша'}]},
+    {'class': '2в', 'students': [{'first_name': 'Даша'}, {'first_name': 'Олег'}, {'first_name': 'Юра'}]},
 ]
 is_male = {
     'Олег': True,
@@ -118,10 +124,12 @@ for one_class in school:
         name = student['first_name']
         if is_male.get(name):
             boys += 1
-        else:
+        elif is_male.get(name) == False:
             girls += 1
-    print(f'Класс {class_name}: девочки {girls}, мальчики {boys} ')
+        else:
+            print(f'{name} из {class_name} отсутствует в списке')
 
+    print(f'Класс {class_name}: девочки {girls}, мальчики {boys} ')
 
 # Задание 5
 # По информации об учениках разных классов нужно найти класс, в котором больше всего девочек и больше всего мальчиков
@@ -149,10 +157,14 @@ for one_class in school:
     boys = 0
     girls = 0
     for student in one_class['students']:
-        if is_male.get(student['first_name']):
-            boys += 1
+        if student['first_name'] in is_male:
+            if is_male.get(student['first_name']):
+                boys += 1
+            else:
+                girls += 1
         else:
-            girls += 1
+            print(student['first_name'], "имя не найдено")
+            continue
     boys_in_class[class_name] = boys
     girls_in_class[class_name] = girls
 # print(f'Мальчиков в классе {boys_in_class}')

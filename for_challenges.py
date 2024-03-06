@@ -26,7 +26,7 @@ is_male = {
     'Вася': True,
     'Маша': False,
 }
-names = ['Петя', 'Маша', 'Вася', 'Оля', 'Юра']
+names = ['Петя', 'Маша', 'Вася', 'Оля']
 
 for name in names:
     """""
@@ -77,6 +77,7 @@ group_number = 0
 for group in groups:
     group_number += 1
     print(f'Группа {group_number}: {",".join(group)}')
+
 # v2
-for i, group in enumerate(groups, 1):
-    print(f'Группа {i}: {" - ".join(group)}')
+for group_number, group in enumerate(groups, 1):
+    print(f'Группа {group_number}: {" - ".join(group)}')
